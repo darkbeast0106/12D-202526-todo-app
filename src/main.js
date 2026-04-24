@@ -1,11 +1,12 @@
 import "./style.css";
+import { todoItems, addTodo, reloadData } from "./todoService";
 
 document.addEventListener("DOMContentLoaded", main);
-const todoItems = [];
 
 function main() {
   const app = document.getElementById("app");
   app.replaceChildren(todoForm(), todoListComponent());
+  reloadData();
   renderTodoList();
 }
 
@@ -36,7 +37,7 @@ function todoForm() {
     event.preventDefault();
     const content = input.value.trim();
     if (content.length > 0 && !todoItems.includes(content)) {
-      todoItems.push(content);
+      addTodo(content);
       input.value = "";
       renderTodoList();
     }
