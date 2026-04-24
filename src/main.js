@@ -3,8 +3,7 @@ const todoItems = [];
 
 function main() {
   const app = document.getElementById("app");
-  app.appendChild(todoForm());
-  app.appendChild(todoListComponent());
+  app.replaceChildren(todoForm(), todoListComponent());
   renderTodoList();
 }
 
@@ -18,7 +17,7 @@ function renderTodoList() {
 
 function todoListItem(title) {
   const listItem = document.createElement("li");
-  listItem.innerText = title;
+  listItem.textContent = title;
   return listItem;
 }
 
@@ -26,6 +25,8 @@ function todoForm() {
   const form = document.createElement("form");
   const input = document.createElement("input");
   input.type = "text"  
+  input.id = "todo-form-input"
+  input.ariaLabel = "Teendő"
   const button = document.createElement("button");
   button.type = "submit"
   button.innerText = "Hozzáad"
